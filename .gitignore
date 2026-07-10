@@ -1,0 +1,23 @@
+# Environment variables
+.env
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+dist/
+build/
+
+# Virtual environment
+vectorstorem/
+venv/
+.venv/
+
+# Test/utility files
+delete_index_docs.py
+
+# IDE
+.vscode/
+.idea/
