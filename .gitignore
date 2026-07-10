@@ -15,8 +15,6 @@ vectorstorem/
 venv/
 .venv/
 
-# Test/utility files
-delete_index_docs.py
 
 # IDE
 .vscode/
