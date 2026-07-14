@@ -15,9 +15,6 @@ venv/
 .venv/
 nlqservice/
 
-# Test files
-test_queries.py
-
 # IDE
 .vscode/
 .idea/
