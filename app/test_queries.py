@@ -1,7 +1,7 @@
 import requests
 import json
 
-NLQ_URL = "http://localhost:8000/nlq"
+NLQ_URL = "https://nlq-service.icyflower-540bf6d4.uksouth.azurecontainerapps.io/nlq"
 
 TEST_CASES = [
     # Snowflake — Source
