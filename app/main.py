@@ -20,15 +20,25 @@ def build_table_definition_docs(tables):
     docs = []
     for t in tables:
         props = t.get("table_properties", {})
-        content = f"""
-            Table {t['table_name']} in {t['schema']} schema on {t.get('source_platform', 'unknown')}.
-            {t.get('description', 'No description available.')}.
-            Refresh frequency: {props.get('data_product.refresh_frequency', 'unknown')}.
-            Classification: {props.get('data_product.classification', 'unknown')}.
-            Owner: {props.get('data_product.owner', 'unknown')}.
-            Row count: {props.get('snowflake.row_count', 'unknown')}.
-            Columns: {', '.join([c['name'] for c in t.get('columns', [])])}.
-        """.strip()
+
+        # Generate description if null
+        description = t.get("description")
+        if not description:
+            table_name = t["table_name"]
+            readable_name = (
+                table_name
+                .replace("src_", "")
+                .replace("ref_", "")
+                .replace("_", " ")
+            )
+            description = f"Source table containing {readable_name} data"
+
+        content = (
+            f"Table {t['table_name']} in {t['schema']} schema "
+            f"on {t.get('source_platform', 'unknown')}. "
+            f"{description}. "
+            f"Columns: {', '.join([c['name'] for c in t.get('columns', [])])}."
+        )
 
         doc = {
             "id": f"{t['schema']}_{t['table_name']}",
@@ -36,7 +46,7 @@ def build_table_definition_docs(tables):
             "schema_name": t["schema"],
             "catalog": t.get("catalog", ""),
             "source_platform": t.get("source_platform", ""),
-            "description": t.get("description", ""),
+            "description": description,
             "refresh_frequency": props.get("data_product.refresh_frequency", ""),
             "classification": props.get("data_product.classification", ""),
             "owner": props.get("data_product.owner", ""),
