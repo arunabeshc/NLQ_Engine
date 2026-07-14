@@ -323,7 +323,7 @@ JOIN_CONDITIONS = [
 # Index 4 — Business Glossary
 
 BUSINESS_GLOSSARY = [
-    # Asset Management terms
+    # Asset Management
     {
         "id": "term-aum",
         "term": "AUM",
@@ -357,7 +357,7 @@ BUSINESS_GLOSSARY = [
     {
         "id": "term-net-flows",
         "term": "Net Flows",
-        "definition": "The difference between gross subscriptions (inflows) and gross redemptions (outflows) for a fund over a period. Positive net flows indicate more money entering than leaving.",
+        "definition": "The difference between gross subscriptions and gross redemptions for a fund over a period.",
         "domain": "asset_management",
         "mapped_tables": "dp_fund_flows",
         "mapped_columns": "net_flows_gbp, gross_subscriptions_gbp, gross_redemptions_gbp",
@@ -367,7 +367,7 @@ BUSINESS_GLOSSARY = [
     {
         "id": "term-sharpe-ratio",
         "term": "Sharpe Ratio",
-        "definition": "A measure of risk-adjusted return. Calculated as excess return over the risk-free rate divided by the standard deviation of returns. Higher is better.",
+        "definition": "A measure of risk-adjusted return. Calculated as excess return over the risk-free rate divided by the standard deviation of returns.",
         "domain": "asset_management",
         "mapped_tables": "dp_fund_performance",
         "mapped_columns": "sharpe_ratio_1y",
@@ -387,7 +387,7 @@ BUSINESS_GLOSSARY = [
     {
         "id": "term-tracking-error",
         "term": "Tracking Error",
-        "definition": "The standard deviation of the difference between a fund's returns and its benchmark returns. Low for index funds, higher for active funds.",
+        "definition": "The standard deviation of the difference between a fund's returns and its benchmark returns.",
         "domain": "asset_management",
         "mapped_tables": "dp_fund_performance",
         "mapped_columns": "tracking_error_1y",
@@ -404,11 +404,11 @@ BUSINESS_GLOSSARY = [
         "regulatory_context": "FCA liquidity stress testing, AIFMD",
         "content": "Redemption pressure liquidity stress investor outflows flag ELEVATED HIGH EXTREME fund management dp_fund_flows redemption_pressure_flag"
     },
-    # Insurance terms
+    # Insurance
     {
         "id": "term-loss-ratio",
         "term": "Loss Ratio",
-        "definition": "Claims paid divided by premiums earned expressed as a percentage. A loss ratio above 100% means the insurer pays out more in claims than it collects in premiums.",
+        "definition": "Claims paid divided by premiums earned expressed as a percentage.",
         "domain": "insurance",
         "mapped_tables": "dp_claims, dp_policy_premiums",
         "mapped_columns": "claim_amount_gbp, approved_amount_gbp, premium_amount_gbp",
@@ -455,7 +455,7 @@ BUSINESS_GLOSSARY = [
         "regulatory_context": "UCITS KIID, PRIIPs",
         "content": "SRRI Synthetic Risk Reward Indicator 1-7 scale fund risk UCITS KIID PRIIPs dp_fund_master risk_rating"
     },
-    # Pension terms
+    # Pension
     {
         "id": "term-annual-allowance",
         "term": "Annual Allowance",
@@ -489,7 +489,7 @@ BUSINESS_GLOSSARY = [
     {
         "id": "term-vfm",
         "term": "Value for Money",
-        "definition": "An assessment framework requiring workplace pension schemes to demonstrate they deliver good value relative to costs. Schemes rated RED must take remedial action.",
+        "definition": "An assessment framework requiring workplace pension schemes to demonstrate they deliver good value relative to costs.",
         "domain": "pension",
         "mapped_tables": "dp_workplace_scheme_performance",
         "mapped_columns": "value_for_money_rating",
@@ -499,7 +499,7 @@ BUSINESS_GLOSSARY = [
     {
         "id": "term-vulnerability",
         "term": "Vulnerable Customer",
-        "definition": "A customer who due to their personal circumstances is especially susceptible to harm. FCA guidance identifies four drivers: health, life events, resilience and capability.",
+        "definition": "A customer who due to their personal circumstances is especially susceptible to harm.",
         "domain": "pension",
         "mapped_tables": "dp_pension_engagement",
         "mapped_columns": "vulnerability_flag, vulnerability_drivers",
@@ -509,23 +509,23 @@ BUSINESS_GLOSSARY = [
     {
         "id": "term-pcls",
         "term": "PCLS",
-        "definition": "Pension Commencement Lump Sum. The tax-free cash entitlement available when a member first takes benefits from their pension. Typically 25% of the pension pot.",
+        "definition": "Pension Commencement Lump Sum. The tax-free cash entitlement available when a member first takes benefits from their pension.",
         "domain": "pension",
         "mapped_tables": "dp_retirement_outcomes",
         "mapped_columns": "tax_free_cash_taken",
         "regulatory_context": "HMRC, Finance Act 2004",
         "content": "PCLS Pension Commencement Lump Sum tax free cash 25% retirement benefits dp_retirement_outcomes tax_free_cash_taken"
     },
-    # Source — Snowflake terms
+    # Source — Snowflake
     {
         "id": "term-customer",
         "term": "Customer",
-        "definition": "A customer is an individual or organisation that places orders. Customer data is stored in src_customers in the source schema on Snowflake. Contains customer ID, name, region and status.",
+        "definition": "A customer is an individual or organisation that places orders. Customer data is stored in src_customers in the source schema on Snowflake.",
         "domain": "source",
         "mapped_tables": "src_customers",
         "mapped_columns": "CUSTOMER_ID, CUSTOMER_NAME, REGION_CODE, STATUS",
         "regulatory_context": "",
-        "content": "customer order buyer src_customers source snowflake CUSTOMER_ID CUSTOMER_NAME region status"
+        "content": "customer order buyer src_customers source snowflake CUSTOMER_ID CUSTOMER_NAME region status active"
     },
     {
         "id": "term-order",
@@ -535,7 +535,7 @@ BUSINESS_GLOSSARY = [
         "mapped_tables": "src_orders, src_order_lines",
         "mapped_columns": "ORDER_ID, CUSTOMER_ID, ORDER_DATE, STATUS, CURRENCY_CODE",
         "regulatory_context": "",
-        "content": "order purchase transaction customer src_orders src_order_lines source snowflake ORDER_ID CUSTOMER_ID ORDER_DATE"
+        "content": "order purchase transaction customer src_orders src_order_lines source snowflake ORDER_ID CUSTOMER_ID ORDER_DATE payment status"
     },
     {
         "id": "term-order-value",
@@ -550,17 +550,17 @@ BUSINESS_GLOSSARY = [
     {
         "id": "term-trade",
         "term": "Trade",
-        "definition": "A trade represents a buy or sell transaction of a financial instrument. Trade data is stored in src_trades in the source schema on Snowflake. Contains trade ID, instrument, quantity, price, currency and counterparty.",
+        "definition": "A trade represents a buy or sell transaction of a financial instrument. Trade data is stored in src_trades in the source schema on Snowflake.",
         "domain": "source",
         "mapped_tables": "src_trades",
         "mapped_columns": "TRADEID, INSTRUMENTID, BUYSELL, QUANTITY, PRICE, CURRENCYCODE, COUNTERPARTYID",
         "regulatory_context": "",
-        "content": "trade buy sell instrument quantity price currency counterparty src_trades source snowflake TRADEID INSTRUMENTID BUYSELL"
+        "content": "trade buy sell instrument quantity price currency counterparty src_trades source snowflake TRADEID INSTRUMENTID BUYSELL high risk"
     },
     {
         "id": "term-position",
         "term": "Position",
-        "definition": "A position represents the current holding of a financial instrument derived from a trade. Position data is stored in src_positions in the source schema on Snowflake. Contains market value, PnL and quantity.",
+        "definition": "A position represents the current holding of a financial instrument derived from a trade. Position data is stored in src_positions in the source schema on Snowflake.",
         "domain": "source",
         "mapped_tables": "src_positions",
         "mapped_columns": "POSITIONID, TRADEID, QUANTITY, MARKETVALUE, PNL, PRICE",
@@ -570,17 +570,17 @@ BUSINESS_GLOSSARY = [
     {
         "id": "term-counterparty",
         "term": "Counterparty",
-        "definition": "A counterparty is the other party in a financial trade transaction. Counterparty data is stored in src_counterparty in the source schema on Snowflake. Contains counterparty type, risk rating and country.",
+        "definition": "A counterparty is the other party in a financial trade transaction. Counterparty data is stored in src_counterparty in the source schema on Snowflake.",
         "domain": "source",
         "mapped_tables": "src_counterparty",
         "mapped_columns": "COUNTERPARTYID, COUNTERPARTYTYPE, COUNTRY_CD, RISKRATING, STATUS",
         "regulatory_context": "",
-        "content": "counterparty trade transaction risk rating country type src_counterparty source snowflake COUNTERPARTYID RISKRATING"
+        "content": "counterparty trade transaction risk rating country type src_counterparty source snowflake COUNTERPARTYID RISKRATING high risk"
     },
     {
         "id": "term-payment",
         "term": "Payment",
-        "definition": "A payment represents a financial settlement against an order. Payment data is stored in src_payments in the source schema on Snowflake. Contains payment ID, order ID, amount and payment status.",
+        "definition": "A payment represents a financial settlement against an order. Payment data is stored in src_payments in the source schema on Snowflake.",
         "domain": "source",
         "mapped_tables": "src_payments",
         "mapped_columns": "PAYMENT_ID, ORDER_ID, AMOUNT, PAYMENT_STATUS",
@@ -590,7 +590,7 @@ BUSINESS_GLOSSARY = [
     {
         "id": "term-product",
         "term": "Product",
-        "definition": "A product is an item available for purchase. Product data is stored in src_products in the source schema on Snowflake. Contains product ID, name, category and price.",
+        "definition": "A product is an item available for purchase. Product data is stored in src_products in the source schema on Snowflake.",
         "domain": "source",
         "mapped_tables": "src_products",
         "mapped_columns": "PRODUCT_ID, PRODUCT_NAME, CATEGORY, PRICE",
@@ -600,22 +600,22 @@ BUSINESS_GLOSSARY = [
     {
         "id": "term-instrument",
         "term": "Instrument",
-        "definition": "A financial instrument is a tradeable asset. Instrument reference data is stored in ref_instrument in the source schema on Snowflake. Contains instrument code, description and type.",
+        "definition": "A financial instrument is a tradeable asset. Instrument reference data is stored in ref_instrument in the source schema on Snowflake.",
         "domain": "source",
         "mapped_tables": "ref_instrument",
         "mapped_columns": "INSTRUMENT_CD, INSTRUMENT_DESC, INSTRUMENT_TYPE, IS_ACTIVE",
         "regulatory_context": "",
-        "content": "instrument financial asset tradeable ref_instrument source snowflake INSTRUMENT_CD INSTRUMENT_DESC INSTRUMENT_TYPE"
+        "content": "instrument financial asset tradeable active ref_instrument source snowflake INSTRUMENT_CD INSTRUMENT_DESC INSTRUMENT_TYPE IS_ACTIVE"
     },
     {
         "id": "term-promotion",
         "term": "Promotion",
-        "definition": "A promotion is a discount applied to an order. Promotion data is stored in ref_promotion in the source schema on Snowflake. Contains promo code and discount percentage.",
+        "definition": "A promotion is a discount applied to an order. Promotion data is stored in ref_promotion in the source schema on Snowflake.",
         "domain": "source",
         "mapped_tables": "ref_promotion",
         "mapped_columns": "PROMO_CODE, DISCOUNT_PCT",
         "regulatory_context": "",
-        "content": "promotion discount promo code order ref_promotion source snowflake PROMO_CODE DISCOUNT_PCT"
+        "content": "promotion discount promo code order ref_promotion source snowflake PROMO_CODE DISCOUNT_PCT available"
     },
 ]
 
@@ -917,14 +917,15 @@ SAMPLE_QUERIES = [
             SELECT c.CUSTOMER_ID, c.CUSTOMER_NAME, c.REGION_CODE, c.STATUS
             FROM AI_TOOL_DB.source.src_customers c
             INNER JOIN AI_TOOL_DB.source.ref_region r ON c.REGION_CODE = r.REGION_CODE
-            WHERE c.STATUS = 'ACTIVE' AND r.REGION_NAME = 'United Kingdom'
+            WHERE c.STATUS = 'ACTIVE'
+            AND r.REGION_NAME = 'United Kingdom'
             LIMIT 5
         """,
         "tables_used": "src_customers, ref_region",
         "schema_name": "source",
         "domain": "source",
         "complexity": "SIMPLE",
-        "content": "active customers UK region status src_customers ref_region snowflake"
+        "content": "active customers UK region status src_customers ref_region snowflake CUSTOMER_ID CUSTOMER_NAME STATUS"
     },
     {
         "id": "query-018",
@@ -959,7 +960,7 @@ SAMPLE_QUERIES = [
         "schema_name": "source",
         "domain": "source",
         "complexity": "SIMPLE",
-        "content": "orders payment status amount src_orders src_payments snowflake"
+        "content": "orders payment status amount src_orders src_payments snowflake ORDER_ID CUSTOMER_ID ORDER_DATE PAYMENT_STATUS"
     },
     {
         "id": "query-020",
@@ -996,5 +997,65 @@ SAMPLE_QUERIES = [
         "domain": "source",
         "complexity": "COMPLEX",
         "content": "order lines product details discount promotion quantity amount src_order_lines src_products ref_promotion snowflake"
+    },
+    {
+        "id": "query-022",
+        "natural_language": "Show me all active instruments and their types",
+        "sql": """
+            SELECT INSTRUMENT_CD, INSTRUMENT_DESC, INSTRUMENT_TYPE
+            FROM AI_TOOL_DB.source.ref_instrument
+            WHERE IS_ACTIVE = 'Y'
+            LIMIT 5
+        """,
+        "tables_used": "ref_instrument",
+        "schema_name": "source",
+        "domain": "source",
+        "complexity": "SIMPLE",
+        "content": "active instruments types ref_instrument source snowflake INSTRUMENT_CD INSTRUMENT_DESC INSTRUMENT_TYPE IS_ACTIVE"
+    },
+    {
+        "id": "query-023",
+        "natural_language": "Show me all counterparties with a high risk rating and their country",
+        "sql": """
+            SELECT cp.COUNTERPARTYID, cp.COUNTERPARTYTYPE, cp.RISKRATING,
+                   c.COUNTRY_NAME, c.REGION
+            FROM AI_TOOL_DB.source.src_counterparty cp
+            INNER JOIN AI_TOOL_DB.source.ref_country c ON cp.COUNTRY_CD = c.COUNTRY_CD
+            WHERE cp.RISKRATING = 'HIGH'
+            LIMIT 5
+        """,
+        "tables_used": "src_counterparty, ref_country",
+        "schema_name": "source",
+        "domain": "source",
+        "complexity": "MEDIUM",
+        "content": "counterparties high risk rating country name region src_counterparty ref_country snowflake COUNTERPARTYID RISKRATING COUNTRY_NAME"
+    },
+    {
+        "id": "query-024",
+        "natural_language": "What promotions are currently available and what discounts do they offer?",
+        "sql": """
+            SELECT PROMO_CODE, DISCOUNT_PCT
+            FROM AI_TOOL_DB.source.ref_promotion
+            LIMIT 5
+        """,
+        "tables_used": "ref_promotion",
+        "schema_name": "source",
+        "domain": "source",
+        "complexity": "SIMPLE",
+        "content": "promotions available discounts promo code ref_promotion source snowflake PROMO_CODE DISCOUNT_PCT"
+    },
+    {
+        "id": "query-025",
+        "natural_language": "List all available currencies",
+        "sql": """
+            SELECT CURRENCY_CODE, CURRENCY_NAME
+            FROM AI_TOOL_DB.source.ref_currency
+            LIMIT 5
+        """,
+        "tables_used": "ref_currency",
+        "schema_name": "source",
+        "domain": "source",
+        "complexity": "SIMPLE",
+        "content": "currencies available currency code name ref_currency source snowflake CURRENCY_CODE CURRENCY_NAME"
     },
 ]
