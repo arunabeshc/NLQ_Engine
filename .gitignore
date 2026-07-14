@@ -15,6 +15,9 @@ venv/
 .venv/
 nlqservice/
 
+#Dockerfile
+Dockerfile
+
 # IDE
 .vscode/
 .idea/
