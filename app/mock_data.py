@@ -1058,4 +1058,25 @@ SAMPLE_QUERIES = [
         "complexity": "SIMPLE",
         "content": "currencies available currency code name ref_currency source snowflake CURRENCY_CODE CURRENCY_NAME"
     },
+    {
+    "id": "query-026",
+    "natural_language": "Show me all HIGH risk underwriting policies with approved claims above 10000",
+    "sql": """
+        SELECT p.policy_id, p.customer_id, p.product_type,
+               u.risk_band, u.fraud_risk_flag,
+               c.claim_id, c.claim_status, c.approved_amount_gbp
+        FROM keyrus_marketplace.insurance.dp_policy_360 p
+        LEFT JOIN keyrus_marketplace.insurance.dp_underwriting_risk u ON p.policy_id = u.policy_id
+        LEFT JOIN keyrus_marketplace.insurance.dp_claims c ON p.policy_id = c.policy_id
+        WHERE u.risk_band = 'HIGH'
+          AND c.claim_status = 'APPROVED'
+          AND c.approved_amount_gbp > 10000
+        LIMIT 5
+    """,
+    "tables_used": "dp_policy_360, dp_underwriting_risk, dp_claims",
+    "schema_name": "insurance",
+    "domain": "insurance",
+    "complexity": "COMPLEX",
+    "content": "HIGH risk underwriting policies approved claims above 10000 dp_policy_360 dp_underwriting_risk dp_claims approved_amount_gbp risk_band"
+    },
 ]
