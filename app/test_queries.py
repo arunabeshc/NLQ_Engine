@@ -1,10 +1,11 @@
 import requests
-import json
 
 NLQ_URL = "https://nlq-service.icyflower-540bf6d4.uksouth.azurecontainerapps.io/nlq"
 
 TEST_CASES = [
+    # ─────────────────────────────────────────
     # Snowflake — Source
+    # ─────────────────────────────────────────
     {
         "question": "Show me all active customers in the UK region",
         "expected_domain": "source",
@@ -55,7 +56,14 @@ TEST_CASES = [
         "expected_domain": "source",
         "expected_platform": "SNOWFLAKE"
     },
+    {
+        "question": "Show me the top 5 products by total revenue across all orders",
+        "expected_domain": "source",
+        "expected_platform": "SNOWFLAKE"
+    },
+    # ─────────────────────────────────────────
     # Databricks — Asset Management
+    # ─────────────────────────────────────────
     {
         "question": "Show me the top 5 funds by assets under management",
         "expected_domain": "asset_management",
@@ -66,13 +74,77 @@ TEST_CASES = [
         "expected_domain": "asset_management",
         "expected_platform": "DATABRICKS"
     },
+    {
+        "question": "Which funds had net outflows last year?",
+        "expected_domain": "asset_management",
+        "expected_platform": "DATABRICKS"
+    },
+    {
+        "question": "Which funds have underperformed their benchmark by more than 2% over the past year?",
+        "expected_domain": "asset_management",
+        "expected_platform": "DATABRICKS"
+    },
+    {
+        "question": "Show me funds with an EXTREME redemption pressure flag and their current AUM",
+        "expected_domain": "asset_management",
+        "expected_platform": "DATABRICKS"
+    },
+    {
+        "question": "Which Article 9 funds have the highest carbon intensity relative to their peer group?",
+        "expected_domain": "asset_management",
+        "expected_platform": "DATABRICKS"
+    },
+    {
+        "question": "Show me the top 5 funds by net inflows from institutional investors last month",
+        "expected_domain": "asset_management",
+        "expected_platform": "DATABRICKS"
+    },
+    {
+        "question": "Which funds have a Sharpe ratio below 0.5 and AUM above 500 million?",
+        "expected_domain": "asset_management",
+        "expected_platform": "DATABRICKS"
+    },
+    # ─────────────────────────────────────────
     # Databricks — Insurance
+    # ─────────────────────────────────────────
     {
         "question": "Show me all high risk insurance policies with fraud flags in the last 30 days",
         "expected_domain": "insurance",
         "expected_platform": "DATABRICKS"
     },
+    {
+        "question": "Show me details of the users who have filed claims in the past year",
+        "expected_domain": "insurance",
+        "expected_platform": "DATABRICKS"
+    },
+    {
+        "question": "Show me all policies due for renewal in the next 30 days where the premium has increased by more than 20%",
+        "expected_domain": "insurance",
+        "expected_platform": "DATABRICKS"
+    },
+    {
+        "question": "Which customers have both a high risk score and a fraud flagged claim in the last 6 months?",
+        "expected_domain": "insurance",
+        "expected_platform": "DATABRICKS"
+    },
+    {
+        "question": "Show me policies with repeated missed payments where the churn risk is above 70%",
+        "expected_domain": "insurance",
+        "expected_platform": "DATABRICKS"
+    },
+    {
+        "question": "What is the average settlement time for claims by claim type?",
+        "expected_domain": "insurance",
+        "expected_platform": "DATABRICKS"
+    },
+    {
+        "question": "Show me all HIGH risk underwriting policies with approved claims above 10000",
+        "expected_domain": "insurance",
+        "expected_platform": "DATABRICKS"
+    },
+    # ─────────────────────────────────────────
     # Databricks — Pension
+    # ─────────────────────────────────────────
     {
         "question": "Which pension members have exceeded their annual allowance this tax year?",
         "expected_domain": "pension",
@@ -80,6 +152,26 @@ TEST_CASES = [
     },
     {
         "question": "Show me workplace pension schemes with a RED value for money rating",
+        "expected_domain": "pension",
+        "expected_platform": "DATABRICKS"
+    },
+    {
+        "question": "Which pension members are within 2 years of their selected retirement date but have a fund value below 50000?",
+        "expected_domain": "pension",
+        "expected_platform": "DATABRICKS"
+    },
+    {
+        "question": "Show me disengaged members with a lapse propensity above 80% and a pot size above 100000",
+        "expected_domain": "pension",
+        "expected_platform": "DATABRICKS"
+    },
+    {
+        "question": "Which workplace schemes have a RED value for money rating and more than 1000 active members?",
+        "expected_domain": "pension",
+        "expected_platform": "DATABRICKS"
+    },
+    {
+        "question": "Show me members who chose drawdown at retirement but have a sustainability score below 40",
         "expected_domain": "pension",
         "expected_platform": "DATABRICKS"
     },
