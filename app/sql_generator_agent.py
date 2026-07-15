@@ -71,6 +71,9 @@ def build_system_prompt(context):
         - For subtracting days: DATE_SUB(CURRENT_DATE(), 30) — integer only, no INTERVAL
         - For adding days: DATE_ADD(CURRENT_DATE(), 30) — integer only, no INTERVAL
         - For subtracting months: ADD_MONTHS(CURRENT_DATE(), -6)
+        - For last year: YEAR(CURRENT_DATE()) - 1
+        - For past year date filter: date_column >= DATE_SUB(CURRENT_DATE(), 365)
+        - For past N months: date_column >= ADD_MONTHS(CURRENT_DATE(), -N)
         - Never use DATEADD() — Snowflake syntax
         - Never use DATE_SUB with INTERVAL — use DATE_SUB(date, integer) instead
         - Never use DATE_ADD with INTERVAL — use DATE_ADD(date, integer) instead
