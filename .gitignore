@@ -21,3 +21,8 @@ Dockerfile
 # IDE
 .vscode/
 .idea/
+
+# Snowflake authentication keys
+secrets/
+snowflake_cert.cer
+snowflake_public_key.txt
