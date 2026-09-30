@@ -26,3 +26,6 @@ Dockerfile
 secrets/
 snowflake_cert.cer
 snowflake_public_key.txt
+
+# Azure Container App configuration
+app.yaml
